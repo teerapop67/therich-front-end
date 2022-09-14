@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 const MeetTeamContainer = styled.div`
-  background: #222;
   padding: 2rem;
   width: 100%;
   height: fit-content;
@@ -30,11 +29,11 @@ const BoxAvatar = styled.div`
   justify-content: center;
   position: relative;
   flex-direction: column;
-  width: 400px;
+  width: 350px;
   height: 300px;
-  background: #6c6051;
-  padding: 10px 24px;
-  border-radius: 5px;
+  background: transparent;
+  padding: 10px 14px;
+  border-radius: 12px;
 
   & > h1 {
     margin: 8px 0 0 0;

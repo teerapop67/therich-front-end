@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box2Items, Content, ContentBox1, ContentBox2 } from './Content'
-import { HeadGreen, HeadTextGradient2, HeadTextP } from '../landing/Header'
+import { HeadGreen, HeadTextP, Img } from '../landing/Header'
 
 export interface PropsOurMission {
   item: {
@@ -21,32 +21,25 @@ const OurMission: React.FC<PropsOurMission> = ({ item, animateState }) => {
     <>
       <Content>
         <ContentBox1>
-          <HeadTextGradient2>Our Mission</HeadTextGradient2>
-
-          <HeadTextP
-            variants={item}
-            initial="hidden"
-            animate={animateState.ourMission && 'visible'}
-            transition={{ duration: 0.7 }}
-          >
-            This is a project for education. From Bangkok University <br /> Thank you for testing our DeFi project.
-            <br />
-            Connect Metamask and enjoy our application <br />
-            Cristiano Ronaldo Haaland Nunez
-          </HeadTextP>
+          <Img
+            src="https://cdn-icons-png.flaticon.com/512/4193/4193266.png"
+            width="350"
+            height="350"
+            alt="wizard-g"
+          ></Img>
         </ContentBox1>
         <ContentBox2>
           <Box2Items>
             <HeadGreen>80 Billion+ </HeadGreen>
-            <HeadTextP style={{ color: '#d1d1d1' }}>Over 8000 Transaction This Month</HeadTextP>
+            <HeadTextP style={{ color: '#202020' }}>Over 8000 Transaction This Month</HeadTextP>
           </Box2Items>
           <Box2Items>
             <HeadGreen>2 Million+</HeadGreen>
-            <HeadTextP style={{ color: '#d1d1d1' }}>Total Users</HeadTextP>
+            <HeadTextP style={{ color: '#202020' }}>Total Users</HeadTextP>
           </Box2Items>
           <Box2Items>
             <HeadGreen>20 Million+</HeadGreen>
-            <HeadTextP style={{ color: '#d1d1d1' }}>Sharing Swap Fees For Providers</HeadTextP>
+            <HeadTextP style={{ color: '#202020' }}>Sharing Swap Fees For Providers</HeadTextP>
           </Box2Items>
         </ContentBox2>
       </Content>

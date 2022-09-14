@@ -33,8 +33,8 @@ export function colors(): Colors {
     black,
 
     // text
-    text1: '#FFFFFF',
-    text2: '#d1d1d1',
+    text1: '#eff6ff',
+    text2: '#FEFEFE',
     text3: '#6C7284',
     text4: '#565A69',
     text5: '#2C2F36',
@@ -45,9 +45,7 @@ export function colors(): Colors {
     bg3: '#40444F',
     bg4: '#565A69',
     bg5: '#6C7284',
-    // bgMain: 'linear-gradient(to right top, #1f2232 70%, #cfa731 30%)',
-    // bgMain: 'linear-gradient(to right, #232526, #414345)',
-    bgMain: '#2c2d32',
+    bgMain: '#1b2030',
 
     //specialty colors
     modalBG: 'rgba(0,0,0,.425)',

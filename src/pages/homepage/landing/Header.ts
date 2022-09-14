@@ -78,16 +78,20 @@ export const HeadText = styled.h1`
 `
 
 export const HeadGreen = styled.h1`
-  color: #2c2d32;
+  color: #202020;
+  transition: color 0.8s ease;
+  &:hover {
+    color: #fd7687;
+  }
 `
 
 export const HeadPurple = styled.h1`
-  color: ${({ theme }) => theme.text1};
+  color: #202020;
   font-size: 3em;
   letter-spacing: 5px;
   transition: text-shadow 0.8s ease;
   &:hover {
-    text-shadow: #2c2d32 0.5px 0 30px;
+    text-shadow: #202020 0.5px 0 30px;
   }
 `
 
@@ -109,7 +113,7 @@ export const HeadTextGradient = styled(motion.h1)`
 
 const animateText = keyframes`
   0% { text-shadow: none }
-  100% { text-shadow: #6c6051 0 12px 80px }
+  100% { text-shadow: #f10086 0 12px 80px }
   
   /* to {
     text-shadow: 0 0 1px goldenrod, 0 0 2px goldenrod, 0 0 3px goldenrod, 0 0 4px goldenrod, 0 0 5px goldenrod, 0 0 6px goldenrod, 0 0 7px goldenrod;
@@ -120,9 +124,14 @@ const animateText = keyframes`
 export const HeadTextGradient2 = styled(motion.h1)`
   font-size: 2.5em;
   margin: 0 0 50px 0;
-  /* color: #6c6051; */
+  color: #fd7687;
   transition: text-shadow 0.5s ease;
   animation: ${animateText} 1s infinite alternate;
+`
+export const HeadTextGradient1 = styled(motion.h1)`
+  font-size: 2.5em;
+  margin: 0 0 50px 0;
+  color: ${({ theme }) => theme.text1};
 `
 
 export const HeadTextP = styled(motion.p)`
@@ -132,51 +141,46 @@ export const HeadTextP = styled(motion.p)`
   font-weight: medium;
   transition: color 0.5s ease;
   /* &:hover {
-    color: #d1d1d1;
+    color: #fd7687;
   } */
 `
 
 export const Button2 = styled.button`
-  background-color: #6c6051;
+  background-color: #fd7687;
   z-index: 5;
   width: fit-content;
   margin-top: 1rem;
   margin-right: 1rem;
-  color: #fff;
+  color: black;
   text-decoration: none;
   text-align: center;
   font-size: 20px;
   cursor: pointer;
   padding: 10px 25px;
-  border: none;
-  transition: background-color 0.3s ease;
   transition: all 0.4s ease;
+
   &:hover {
     padding: 10px 40px;
   }
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `
 
 export const Button3 = styled.button`
-  background-color: transparent;
+  background-color: #8d65c5;
   z-index: 5;
   width: fit-content;
-  border: 2px solid #999;
   margin-top: 1rem;
   margin-right: 1rem;
-  color: ${({ theme }) => theme.text1};
+  color: black;
   text-decoration: none;
   text-align: center;
   font-size: 20px;
   cursor: pointer;
   padding: 10px 25px;
   transition: all 0.4s ease;
+
   &:hover {
     padding: 10px 40px;
   }
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `
 
 export const Img = styled.img``

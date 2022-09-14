@@ -45,9 +45,8 @@ export function colors(): Colors {
     bg3: '#6C7284',
     bg4: '#6C7284',
     bg5: '#41434c',
+    bgMain: '#eff6ff',
     // bgMain: 'linear-gradient(to right top, #E3DDF1 70%, #cfa731 30%)',
-    bgMain: 'linear-gradient(62deg, #E3DDF1 0%, #E3DDF1 100%)',
-
     //specialty colors
     modalBG: 'rgba(0,0,0,.425)',
     advancedBG: 'rgba(0,0,0,0.1)',

@@ -58,9 +58,9 @@ const BodyWrapper = styled.div`
   `};
 `
 
-const Marginer = styled.div`
-  margin-top: 5rem;
-`
+// const Marginer = styled.div`
+//   margin-top: 5rem;
+// `
 
 export default function App() {
   const darkObject = dark()
@@ -126,7 +126,6 @@ export default function App() {
                 <Route component={RedirectPathToSwapOnly} />
               </Switch>
             </Web3ReactManager>
-            <Marginer />
             {location.pathname !== '/' ? account && <DrawerAsset /> : null}
           </BodyWrapper>
         </AppWrapper>

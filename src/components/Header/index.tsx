@@ -74,7 +74,7 @@ const HeaderElementWrap = styled.div`
 `};
 `
 
-const Title = styled.a`
+export const Title = styled.a`
   display: flex;
   align-items: center;
   pointer-events: auto;
@@ -113,7 +113,7 @@ const NetworkCard = styled.div`
   padding: 10px 13px;
 `
 
-const UniIcon = styled.div`
+export const UniIcon = styled.div`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.text1};
@@ -138,6 +138,21 @@ const BalanceText = styled(Text)`
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     display: none;
   `};
+`
+
+const FaucetButton = styled.a<{ active: boolean }>`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: ${({ theme }) => theme.text1};
+  border-radius: 12px;
+  white-space: nowrap;
+  text-decoration: none;
+  margin-right: 30px;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px 25px;
+  border: 1px solid ${({ theme }) => theme.text1};
 `
 
 const NETWORK_LABELS: { [chainId in ChainId]: string | null } = {
@@ -173,7 +188,9 @@ const Header: React.FC<PropsHeader> = props => {
         </HeaderElement>
         {location.pathname === '/' ? (
           <Link to="/swap">
-            <Button borderColor="#6c6051">Launch</Button>
+            <Button borderColor="transparent" bg="#fd7687">
+              Launch
+            </Button>
           </Link>
         ) : (
           <HeaderControls>
@@ -183,6 +200,13 @@ const Header: React.FC<PropsHeader> = props => {
                   <NetworkCard>{NETWORK_LABELS[chainId]}</NetworkCard>
                 )}
               </TestnetWrapper>
+              <FaucetButton
+                active={!!account}
+                href="https://apps.moonbeam.network/moonbase-alpha/faucet/"
+                target="_blank"
+              >
+                Faucet
+              </FaucetButton>
               <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
                 {account && userEthBalance ? (
                   <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>

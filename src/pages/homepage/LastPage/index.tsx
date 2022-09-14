@@ -1,23 +1,29 @@
 import React from 'react'
-import { Button2, Button3, HeadTextP, Img } from '../landing/Header'
+import { Button2, Button3, HeadGreen, HeadTextP, Img } from '../landing/Header'
 import styled from 'styled-components'
 import { PropsOurMission } from '../ourMission'
 
 export const LastPageContainer = styled.div`
     display : flex;
-    width : 100%;
+    width : 90%;
     height 500px;
     justify-content: center;
     align-items : center;
     text-align : center;
     color :white;
     margin-top : 5rem;
-    background-color: #2c2d32;
+    border-radius: 15px;
+    background-color: #e0eaf3;
+
+    
     /* background-image: linear-gradient(225deg, #333 0%, #222 50%, #444 100%); */
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     @media screen and (max-width: 1100px) {
         height: auto;
         flex-direction: column-reverse;
+    }
+    transition: box-shadow 0.5s ease;
+    &:hover {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     }
  
 `
@@ -49,9 +55,9 @@ const LastPage: React.FC<PropsOurMission> = ({ item, animateState }) => {
     <>
       <LastPageContainer>
         <LastLeft>
-          <h1 style={{ color: '#fff' }}>This Is For Educational Purpose</h1>
+          <HeadGreen>This Is For Educational Purpose</HeadGreen>
           <HeadTextP
-            style={{ color: '#d1d1d1' }}
+            style={{ color: '#101010' }}
             variants={item}
             initial="hidden"
             animate={animateState.education && 'visible'}
@@ -61,12 +67,24 @@ const LastPage: React.FC<PropsOurMission> = ({ item, animateState }) => {
             And we are non-profit project, Blah Blaw Bha <br />
             Click the button below to see more about Moonbeam
           </HeadTextP>
-          <Button2>Join Discord Community</Button2>
-          <Button3 style={{ color: '#fff' }}>Join Github Repository</Button3>
+          <Button2>
+            <a style={{ textDecoration: 'none', color: 'black' }} href="https://discord.gg/MZDht3e7" target="_blank">
+              Join Discord Community
+            </a>
+          </Button2>
+          <Button3>
+            <a
+              style={{ textDecoration: 'none', color: 'black' }}
+              href="https://github.com/teerapop67/therich-front-end"
+              target="_blank"
+            >
+              Join Github Repository
+            </a>
+          </Button3>
         </LastLeft>
         <LastRight>
           <Img
-            src="https://cdn-icons-png.flaticon.com/512/5149/5149097.png"
+            src="https://cdn-icons-png.flaticon.com/512/4193/4193310.png"
             width="400"
             height="400"
             alt="wizard"

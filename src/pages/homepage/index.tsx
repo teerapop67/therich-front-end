@@ -10,6 +10,7 @@ import OurMission from './ourMission'
 import FooterCommunity from './FooterCommunity'
 import LastPage from './LastPage'
 import { Header, HeaderInfo2 } from './landing/Header'
+import Footer from './Footer'
 // import axios from 'axios'
 
 const item = {
@@ -30,7 +31,7 @@ const variants = {
   hidden: { opacity: 0, y: -50 }
 }
 
-const itemsSlide = [{ value: 'DEV' }, { value: 'EATH' }, { value: 'JUPYTER' }, { value: 'RICH' }, { value: 'VENUS' }]
+const itemsSlide = [{ value: 'DEV' }, { value: 'EATH' }, { value: 'JUPYTER' }, { value: 'TR' }, { value: 'WDEV' }]
 const bitcoinList = [0, 1, 2]
 
 // <Img src="https://cdn-icons-png.flaticon.com/512/5149/5149086.png" width="400" height="400" alt="aave"></Img>
@@ -126,6 +127,7 @@ const Homepage = () => {
       <LastPage key={2} item={item} animateState={animateState} />
 
       <MeetTeam />
+      <Footer />
     </>
   )
 }
