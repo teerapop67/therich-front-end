@@ -18,6 +18,7 @@ const FooterWrapper = styled.div`
 
   > p {
     font-size: 14px;
+    color: #fff;
   }
 `
 
