@@ -102,6 +102,40 @@ const OptionGrid = styled.div`
   `};
 `
 
+const RecommendBtn = styled.a`
+  padding: 1rem;
+  outline: none;
+  border: 1px solid;
+  border-radius: 12px;
+  width: 100% !important;
+  border-color: #40444f;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 1rem;
+  margin-top: 0;
+  opacity: 1;
+  color: ${({ theme }) => theme.text1};
+
+  cursor: pointer;
+  &:hover {
+    border: 1px solid #ba55d3;
+  }
+`
+
 const HoverText = styled.div`
   :hover {
     cursor: pointer;
@@ -238,15 +272,20 @@ export default function WalletModal({
         if (!(window.web3 || window.ethereum)) {
           if (option.name === 'MetaMask') {
             return (
-              <Option
-                id={`connect-${key}`}
-                key={key}
-                color={'#E8831D'}
-                header={'Install Metamask'}
-                subheader={null}
-                link={'https://metamask.io/'}
-                icon={MetamaskIcon}
-              />
+              <>
+                <Option
+                  id={`connect-${key}`}
+                  key={key}
+                  color={'#E8831D'}
+                  header={'Install Metamask'}
+                  subheader={null}
+                  link={'https://metamask.io/'}
+                  icon={MetamaskIcon}
+                />
+                <RecommendBtn href="#" target="_blank" style={{ textDecoration: 'none' }}>
+                  Learn more about wallet
+                </RecommendBtn>
+              </>
             )
           } else {
             return null //dont want to return install twice
@@ -296,7 +335,12 @@ export default function WalletModal({
           <HeaderRow>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error connecting'}</HeaderRow>
           <ContentWrapper>
             {error instanceof UnsupportedChainIdError ? (
-              <h5>Please connect to the appropriate Ethereum network.</h5>
+              <>
+                <h5>Please connect to the appropriate Moonbase Alpha network.</h5>
+                <ExternalLink href="#" target="_blank">
+                  Click here how to switch network
+                </ExternalLink>
+              </>
             ) : (
               'Error connecting. Try refreshing the page.'
             )}
@@ -349,8 +393,8 @@ export default function WalletModal({
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
             <Blurb>
-              <span>New to Ethereum? &nbsp;</span>{' '}
-              <ExternalLink href="https://ethereum.org/wallets/">Learn more about wallets</ExternalLink>
+              {/* <span>New to Ethereum? &nbsp;</span>{' '}
+              <ExternalLink href="https://ethereum.org/wallets/">Learn more about wallets</ExternalLink> */}
             </Blurb>
           )}
         </ContentWrapper>

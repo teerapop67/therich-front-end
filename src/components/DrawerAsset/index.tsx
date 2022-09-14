@@ -70,7 +70,7 @@ const ArrowWrapper = styled.span<{ isOpen: boolean }>`
 `
 
 const ArrowDrawer = styled(ArrowLeft)<{ isOpen: boolean }>`
-  transform: ${({ isOpen }) => (isOpen ? null : 'rotateY(180deg)')};
+  transform: ${({ isOpen }) => (!isOpen ? null : 'rotateY(180deg)')};
   padding: 5px;
 `
 const DrawerHeader = styled.div`
@@ -103,20 +103,20 @@ const DrawerAsset: React.FC<any> = () => {
           <DrawerHeader>Token Balance</DrawerHeader>
           <CoinWrapper>
             <div className="box-token">
-              <p className="name-coin">{balance[rich]?.currency?.symbol}</p>
               {balance[rich]?.toSignificant(4)}
+              <p className="name-coin">{balance[rich]?.currency?.symbol}</p>
             </div>
             <div className="box-token">
-              <p className="name-coin">{balance[earth]?.currency?.symbol} </p>
               {balance[earth]?.toSignificant(4)}
+              <p className="name-coin">{balance[earth]?.currency?.symbol} </p>
             </div>
             <div className="box-token">
-              <p className="name-coin">{balance[jup]?.currency?.symbol}</p>
               {balance[jup]?.toSignificant(4)}
+              <p className="name-coin">{balance[jup]?.currency?.symbol}</p>
             </div>
             <div className="box-token">
-              <p className="name-coin">{balance[wdevShow]?.currency?.symbol}</p>
               {balance[wdevShow]?.toSignificant(4)}
+              <p className="name-coin">{balance[wdevShow]?.currency?.symbol}</p>
             </div>
           </CoinWrapper>
         </DrawerWrapper>

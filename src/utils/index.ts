@@ -29,14 +29,14 @@ export function getEtherscanLink(chainId: ChainId, data: string, type: 'transact
   const prefix = 'https://moonbase.subscan.io'
   switch (type) {
     case 'transaction': {
-      return `${prefix}/extrinsic/${data}`
+      return `${prefix}/tx/${data}`
     }
     case 'token': {
       return `${prefix}/token/${data}`
     }
     case 'address':
     default: {
-      return `${prefix}/account/${data}`
+      return `${prefix}/address/${data}`
     }
   }
 }
