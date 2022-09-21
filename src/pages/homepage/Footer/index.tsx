@@ -9,7 +9,7 @@ const FooterContainer = styled.div`
 `
 
 const FooterWrapper = styled.div`
-  max-width: 800;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -19,6 +19,10 @@ const FooterWrapper = styled.div`
   > p {
     font-size: 14px;
     color: #fff;
+
+    & > a {
+      color: #fff;
+    }
   }
 `
 
@@ -26,7 +30,12 @@ const Footer: React.FC<any> = () => {
   return (
     <FooterContainer>
       <FooterWrapper>
-        <p>Copyright &copy; 2022 The Rich</p>
+        <p>
+          Copyright &copy; 2022 The Rich{' '}
+          <a href="https://www.flaticon.com/" target="_blank">
+            picture by flaticon
+          </a>
+        </p>
       </FooterWrapper>
     </FooterContainer>
   )

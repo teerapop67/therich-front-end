@@ -30,15 +30,15 @@ const OurMission: React.FC<PropsOurMission> = ({ item, animateState }) => {
         </ContentBox1>
         <ContentBox2>
           <Box2Items>
-            <HeadGreen>80 Billion+ </HeadGreen>
-            <HeadTextP style={{ color: '#202020' }}>Over 8000 Transaction This Month</HeadTextP>
+            <HeadGreen>0</HeadGreen>
+            <HeadTextP style={{ color: '#202020' }}>Over 0 Transaction This Month</HeadTextP>
           </Box2Items>
           <Box2Items>
-            <HeadGreen>2 Million+</HeadGreen>
+            <HeadGreen>0</HeadGreen>
             <HeadTextP style={{ color: '#202020' }}>Total Users</HeadTextP>
           </Box2Items>
           <Box2Items>
-            <HeadGreen>20 Million+</HeadGreen>
+            <HeadGreen>0</HeadGreen>
             <HeadTextP style={{ color: '#202020' }}>Sharing Swap Fees For Providers</HeadTextP>
           </Box2Items>
         </ContentBox2>

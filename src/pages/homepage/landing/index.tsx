@@ -54,7 +54,13 @@ const Landing: React.FC<any> = () => {
         </Link>
 
         <Button borderColor="transparent" bg="#e0eaf3" color="#3974e8">
-          Documents
+          <a
+            href="https://the-rich-documentation.gitbook.io/installation/"
+            target="_blank"
+            style={{ color: '#3974e8', textDecoration: 'none' }}
+          >
+            Documents
+          </a>
         </Button>
       </HeaderInfo>
     </>

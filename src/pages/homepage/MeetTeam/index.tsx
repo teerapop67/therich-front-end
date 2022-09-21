@@ -60,7 +60,7 @@ const MeetTeam: React.FC<any> = () => {
             <p>Position: Developer, Founder</p>
           </BoxAvatar>
           <BoxAvatar>
-            <img src="./images/avatar/benz-un.jpg" alt="avatar" />
+            <img src="./images/avatar/toon.png" alt="avatar" />
             <h1>Pankorn Wangsakun</h1>
             <p>Position: Developer, Founder</p>
           </BoxAvatar>

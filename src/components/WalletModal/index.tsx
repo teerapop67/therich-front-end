@@ -282,7 +282,11 @@ export default function WalletModal({
                   link={'https://metamask.io/'}
                   icon={MetamaskIcon}
                 />
-                <RecommendBtn href="#" target="_blank" style={{ textDecoration: 'none' }}>
+                <RecommendBtn
+                  href="https://the-rich-documentation.gitbook.io/installation/"
+                  target="_blank"
+                  style={{ textDecoration: 'none' }}
+                >
                   Learn more about wallet
                 </RecommendBtn>
               </>
@@ -337,7 +341,10 @@ export default function WalletModal({
             {error instanceof UnsupportedChainIdError ? (
               <>
                 <h5>Please connect to the appropriate Moonbase Alpha network.</h5>
-                <ExternalLink href="#" target="_blank">
+                <ExternalLink
+                  href="https://the-rich-documentation.gitbook.io/installation/how-to-add-moonbase-alpha-chain"
+                  target="_blank"
+                >
                   Click here how to switch network
                 </ExternalLink>
               </>
