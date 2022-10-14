@@ -20,23 +20,25 @@ const TransactionStatusText = styled.div`
   }
 `
 
-const TransactionState = styled(ExternalLink)<{ pending: boolean; success?: boolean }>`
+const TransactionState = styled(ExternalLink)<{ pending: boolean; success?: boolean; p?: string }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-decoration: none !important;
   border-radius: 0.5rem;
-  padding: 0.25rem 0rem;
+  opacity: 0.8;
+  text-align: left;
+  padding: ${({ p }) => (p ? p : ' 0.5rem 0rem')};
   font-weight: 500;
   font-size: 0.825rem;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.text1};
 `
 
 const IconWrapper = styled.div<{ pending: boolean; success?: boolean }>`
   color: ${({ pending, success, theme }) => (pending ? theme.primary1 : success ? theme.green1 : theme.red1)};
 `
 
-export default function Transaction({ hash }: { hash: string }) {
+export default function Transaction({ hash, p }: { hash: string; p?: string }) {
   const { chainId } = useActiveWeb3React()
   const allTransactions = useAllTransactions()
 
@@ -49,7 +51,7 @@ export default function Transaction({ hash }: { hash: string }) {
 
   return (
     <TransactionWrapper>
-      <TransactionState href={getEtherscanLink(chainId, hash, 'transaction')} pending={pending} success={success}>
+      <TransactionState p={p} href={getEtherscanLink(chainId, hash, 'transaction')} pending={pending} success={success}>
         <RowFixed>
           <TransactionStatusText>{summary ?? hash} ↗</TransactionStatusText>
         </RowFixed>

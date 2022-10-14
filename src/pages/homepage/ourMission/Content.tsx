@@ -33,8 +33,8 @@ export const ContentBox1 = styled(motion.div)`
 `
 export const ContentBox2 = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 60%;
+  grid-template-columns: repeat(2, 1fr);
+  width: 40%;
   height: auto;
   background-color: #e0eaf3;
 

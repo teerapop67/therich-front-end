@@ -291,8 +291,8 @@ export default function Swap() {
     scene.add(mesh)
 
     const sizes = {
-      width: 400,
-      height: 400
+      width: 250,
+      height: 250
     }
 
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)

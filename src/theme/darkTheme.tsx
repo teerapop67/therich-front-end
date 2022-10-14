@@ -82,7 +82,7 @@ export function colors(): Colors {
     red1: '#FF6871',
     red2: '#F82D3A',
     green1: '#27AE60',
-    yellow1: '#FFE270',
+    yellow1: '#f8c070',
     yellow2: '#F3841E',
 
     //shadow

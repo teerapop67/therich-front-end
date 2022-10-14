@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { ArrowUpCircle, ArrowDownCircle } from 'react-feather'
 import styled, { keyframes } from 'styled-components'
+import { useAllTokens } from '../../hooks/Tokens'
 import { useAllTokenBalances } from '../../state/wallet/hooks'
-import { ArrowLeft } from 'react-feather'
+import CurrencyLogo from '../CurrencyLogo'
+// import { ArrowLeft } from 'react-feather'
 
 const DrawerContainer = styled.div<{ isOpen?: boolean }>`
   position: absolute;
@@ -21,6 +24,7 @@ const DrawerWrapper = styled.div<{ isOpen?: boolean }>`
   width: 100%;
   transition: all 0.3s ease-in-out;
   background: #111;
+  opacity: 0.9;
   height: 100%;
   transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(100%)')};
 `
@@ -37,20 +41,20 @@ const CoinWrapper = styled.div`
     border-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     gap: 10px;
-    border: 1px solid yellow;
+    border: 0.5px solid ${({ theme }) => theme.yellow1};
     color: #fff;
 
     .name-coin {
-      color: red;
+      color: #f4e8e8;
     }
   }
   margin-bottom: 30px;
 `
 
 const AnimateArrow = keyframes`
-    from { transform: translateX(0)} to { transform: translateX(10px)}
+    from { transform: translateX(0)} to { transform: translateX(5px)}
 
 `
 
@@ -61,18 +65,25 @@ const ArrowWrapper = styled.span<{ isOpen: boolean }>`
   animation: ${AnimateArrow} 0.3s infinite alternate;
   position: absolute;
   top: 50%;
+  padding: 12px;
+  width: fit-content;
   left: ${({ isOpen }) => (isOpen ? 0 : '18em')};
-  background: red;
-  border-radius: 100%;
+  background: #000;
+  opacity: 0.5;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  border-radius: 12px;
   color: #fff;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  height: fit-content;
+  transform: rotateY(180deg);
 `
 
-const ArrowDrawer = styled(ArrowLeft)<{ isOpen: boolean }>`
-  transform: ${({ isOpen }) => (!isOpen ? null : 'rotateY(180deg)')};
-  padding: 5px;
-`
+// const ArrowDrawer = styled.div<{ isOpen: boolean }>`
+//   transform: ${({ isOpen }) => (!isOpen ? null : 'rotateY(180deg)')};
+//   padding: 5px;
+// `
 const DrawerHeader = styled.div`
   font-weight: bold;
   justify-content: center;
@@ -80,7 +91,7 @@ const DrawerHeader = styled.div`
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) inset;
   align-items: center;
   width: 100%;
-  font-size: 25px;
+  font-size: 18px;
   margin: 0;
   height: 80px;
   background-color: #222;
@@ -89,39 +100,84 @@ const DrawerHeader = styled.div`
 
 const DrawerAsset: React.FC<any> = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const allTokens: any = useAllTokens()
+  const [sortAToZ, setSortAToZ] = useState(true)
+
+  const [totalTokenAddress, setTotalTokenAddress] = useState<any>([])
   const balance = useAllTokenBalances()
 
-  console.log('is :', isOpen)
-  const earth = '0x08B40414525687731C23F430CEBb424b332b3d35'
-  const rich = '0x6e3B1C44C888487Ae92cc4651858F0a838Eb69A2'
-  const jup = '0x9Aac6FB41773af877a2Be73c99897F3DdFACf576'
-  const wdevShow = '0xD909178CC99d318e4D46e7E66a972955859670E1'
+  // const earth = '0x08B40414525687731C23F430CEBb424b332b3d35'
+  // const rich = '0x6e3B1C44C888487Ae92cc4651858F0a838Eb69A2'
+  // const jup = '0x9Aac6FB41773af877a2Be73c99897F3DdFACf576'
+  // const wdevShow = '0xD909178CC99d318e4D46e7E66a972955859670E1'
+
+  useEffect(() => {
+    if (totalTokenAddress.length === 0) {
+      setTotalTokenAddress([
+        {
+          name: 'earth',
+          logo: allTokens['0x08B40414525687731C23F430CEBb424b332b3d35'],
+          address: '0x08B40414525687731C23F430CEBb424b332b3d35'
+        },
+        {
+          name: 'rich',
+          logo: allTokens['0x6e3B1C44C888487Ae92cc4651858F0a838Eb69A2'],
+          address: '0x6e3B1C44C888487Ae92cc4651858F0a838Eb69A2'
+        },
+        {
+          name: 'jup',
+          logo: allTokens['0x9Aac6FB41773af877a2Be73c99897F3DdFACf576'],
+          address: '0x9Aac6FB41773af877a2Be73c99897F3DdFACf576'
+        },
+        {
+          name: 'wdev',
+          logo: allTokens['0xD909178CC99d318e4D46e7E66a972955859670E1'],
+          address: '0xD909178CC99d318e4D46e7E66a972955859670E1'
+        }
+      ])
+    }
+  }, [sortAToZ])
+
+  const compareStrings = (a: string, b: string) => {
+    return a < b ? -1 : a > b ? 1 : 0
+  }
+
+  const handleSort = () => {
+    if (sortAToZ) {
+      const reZtoA = totalTokenAddress.sort((a: any, b: any) => b.name.localeCompare(a.name))
+      setTotalTokenAddress(reZtoA)
+      setSortAToZ(false)
+    } else {
+      const reAtoZ = totalTokenAddress.sort((a: any, b: any) => compareStrings(a.name, b.name))
+      setTotalTokenAddress(reAtoZ)
+      setSortAToZ(true)
+    }
+  }
+
   return (
     <>
       <DrawerContainer isOpen={isOpen}>
         <DrawerWrapper isOpen={isOpen}>
-          <DrawerHeader>Token Balance</DrawerHeader>
+          <DrawerHeader>Balance</DrawerHeader>
           <CoinWrapper>
-            <div className="box-token">
-              {balance[rich]?.toSignificant(4)}
-              <p className="name-coin">{balance[rich]?.currency?.symbol}</p>
-            </div>
-            <div className="box-token">
-              {balance[earth]?.toSignificant(4)}
-              <p className="name-coin">{balance[earth]?.currency?.symbol} </p>
-            </div>
-            <div className="box-token">
-              {balance[jup]?.toSignificant(4)}
-              <p className="name-coin">{balance[jup]?.currency?.symbol}</p>
-            </div>
-            <div className="box-token">
-              {balance[wdevShow]?.toSignificant(4)}
-              <p className="name-coin">{balance[wdevShow]?.currency?.symbol}</p>
-            </div>
+            {sortAToZ ? (
+              <ArrowDownCircle cursor="pointer" onClick={handleSort} strokeWidth={0.5} size={30} />
+            ) : (
+              <ArrowUpCircle cursor="pointer" onClick={handleSort} strokeWidth={0.5} size={30} />
+            )}
+
+            {totalTokenAddress.map((token: any) => (
+              <div className="box-token" key={token.name}>
+                <CurrencyLogo currency={token.logo} size={'24px'} />
+                {balance[token.address]?.toSignificant(4)}
+                <p className="name-coin">{balance[token.address]?.currency?.symbol}</p>
+              </div>
+            ))}
           </CoinWrapper>
         </DrawerWrapper>
-        <ArrowWrapper isOpen={isOpen}>
-          <ArrowDrawer onClick={() => setIsOpen(!isOpen)} isOpen={isOpen} />
+        <ArrowWrapper isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+          {/* <ArrowDrawer  /> */}
+          BALANCE
         </ArrowWrapper>
       </DrawerContainer>
     </>

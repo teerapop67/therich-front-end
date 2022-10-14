@@ -1,9 +1,9 @@
-import React, { useCallback, useContext } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useContext } from 'react'
+// import { useDispatch } from 'react-redux'
 import styled, { ThemeContext } from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
-import { AppDispatch } from '../../state'
-import { clearAllTransactions } from '../../state/transactions/actions'
+// import { AppDispatch } from '../../state'
+// import { clearAllTransactions } from '../../state/transactions/actions'
 import { shortenAddress } from '../../utils'
 import { AutoRow } from '../Row'
 import Copy from './Copy'
@@ -20,7 +20,8 @@ import PortisIcon from '../../assets/images/portisIcon.png'
 import Identicon from '../Identicon'
 import { ButtonSecondary } from '../Button'
 import { ExternalLink as LinkIcon } from 'react-feather'
-import { ExternalLink, LinkStyledButton, TYPE } from '../../theme'
+import { ExternalLink, TYPE } from '../../theme'
+import { Link } from 'react-router-dom'
 
 const HeaderRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap};
@@ -196,6 +197,12 @@ const WalletAction = styled(ButtonSecondary)`
   }
 `
 
+const LinkViewAllTransaction = styled(Link)`
+  color: ${({ theme }) => theme.text1};
+  text-decoration: none;
+  font-size: 12px;
+`
+
 const MainWalletAction = styled(WalletAction)`
   color: ${({ theme }) => theme.primary1};
 `
@@ -203,7 +210,7 @@ const MainWalletAction = styled(WalletAction)`
 function renderTransactions(transactions: string[]) {
   return (
     <TransactionListWrapper>
-      {transactions.map((hash, i) => {
+      {transactions.slice(0, 5).map((hash, i) => {
         return <Transaction key={i} hash={hash} />
       })}
     </TransactionListWrapper>
@@ -227,7 +234,7 @@ export default function AccountDetails({
 }: AccountDetailsProps) {
   const { chainId, account, connector } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
-  const dispatch = useDispatch<AppDispatch>()
+  // const dispatch = useDispatch<AppDispatch>()
 
   function formatConnectorName() {
     const { ethereum } = window
@@ -285,9 +292,9 @@ export default function AccountDetails({
     return null
   }
 
-  const clearAllTransactionsCallback = useCallback(() => {
-    if (chainId) dispatch(clearAllTransactions({ chainId }))
-  }, [dispatch, chainId])
+  // const clearAllTransactionsCallback = useCallback(() => {
+  //   if (chainId) dispatch(clearAllTransactions({ chainId }))
+  // }, [dispatch, chainId])
 
   return (
     <>
@@ -396,14 +403,17 @@ export default function AccountDetails({
         <LowerSection>
           <AutoRow mb={'1rem'} style={{ justifyContent: 'space-between' }}>
             <TYPE.body>My Transactions</TYPE.body>
-            <LinkStyledButton onClick={clearAllTransactionsCallback}>(clear all)</LinkStyledButton>
+            <LinkViewAllTransaction to="/history">(View all)</LinkViewAllTransaction>
           </AutoRow>
           {renderTransactions(pendingTransactions)}
           {renderTransactions(confirmedTransactions)}
         </LowerSection>
       ) : (
         <LowerSection>
-          <TYPE.body color={theme.text1}>Your transactions will appear here...</TYPE.body>
+          <AutoRow mb={'1rem'} style={{ justifyContent: 'space-between' }}>
+            <TYPE.body color={theme.text1}>Your transactions will appear here...</TYPE.body>
+            <LinkViewAllTransaction to="/history">(View all)</LinkViewAllTransaction>
+          </AutoRow>
         </LowerSection>
       )}
     </>

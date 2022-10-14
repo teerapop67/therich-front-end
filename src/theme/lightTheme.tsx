@@ -70,13 +70,13 @@ export function colors(): Colors {
     red1: '#FF6871',
     red2: '#F82D3A',
     green1: '#27AE60',
-    yellow1: '#FFE270',
+    yellow1: '#f8c070',
     yellow2: '#F3841E',
 
     //shadow
 
     shadow:
-      'inset -8px -8px 60px -5px rgb(21 20 29 / 60%), inset 4px -4px 3px rgb(102 96 119 / 50%), inset -7px 7px 5px -4px #161222;',
+      'inset -8px -8px 60px -5px rgb(21 20 29 / 60%), inset 4px -4px 3px rgb(102 96 119 / 50%), inset -7px 7px 5px -4px #fff;',
     shadow2:
       '-6px 6px 12px rgb(11 9 30 / 50%), 5px -5px 12px rgb(79 74 94 / 30%), inset -6px 6px 12px rgb(11 9 30 / 24%), inset -5px -5px 20px rgb(102 96 119 / 20%);',
     shadow3:

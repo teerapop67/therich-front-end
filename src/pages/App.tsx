@@ -28,6 +28,7 @@ import light from '../theme/lightTheme'
 import { ThemedGlobalStyle } from '../theme'
 import { useActiveWeb3React } from '../hooks'
 import DrawerAsset from '../components/DrawerAsset'
+import HistoryTransaction from './HistoryTransaction'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -88,7 +89,6 @@ export default function App() {
       if (parseVal.title === 'dark') {
         setTheme(darkObject)
       } else {
-        console.log('PAS: ', parseVal.title)
         setTheme(lightObject)
       }
     }
@@ -112,6 +112,7 @@ export default function App() {
             <Web3ReactManager>
               <Switch>
                 <Route exact strict path="/" component={Homepage} />
+                <Route exact strict path="/history" component={HistoryTransaction} />
                 <Route exact strict path="/swap" component={Swap} />
                 <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
                 <Route exact strict path="/send" component={RedirectPathToSwapOnly} />

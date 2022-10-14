@@ -43,8 +43,6 @@ const Tag = styled.div`
 `
 
 export function Balance({ balance }: { balance: CurrencyAmount }) {
-  console.log('SADASD:', balance)
-
   return <StyledBalanceText title={balance.toExact()}>{balance.toSignificant(4)}</StyledBalanceText>
 }
 

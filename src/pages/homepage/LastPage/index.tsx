@@ -55,7 +55,7 @@ const LastPage: React.FC<PropsOurMission> = ({ item, animateState }) => {
     <>
       <LastPageContainer>
         <LastLeft>
-          <HeadGreen>This Is For Educational Purpose</HeadGreen>
+          <HeadGreen>This is for educational purpose</HeadGreen>
           <HeadTextP
             style={{ color: '#101010' }}
             variants={item}
@@ -63,9 +63,8 @@ const LastPage: React.FC<PropsOurMission> = ({ item, animateState }) => {
             animate={animateState.education && 'visible'}
             transition={{ duration: 0.7 }}
           >
-            The Rich is develop for educational purpose <br />
-            And we are non-profit project, Blah Blaw Bha <br />
-            Click the button below to see more about Moonbeam
+            The Rich is developed for educational purpose, <br />
+            Click the button below to join our community and source code.
           </HeadTextP>
           <Button2>
             <a style={{ textDecoration: 'none', color: 'black' }} href="https://discord.gg/MZDht3e7" target="_blank">

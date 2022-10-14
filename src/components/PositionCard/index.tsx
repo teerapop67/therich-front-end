@@ -9,7 +9,7 @@ import { useTotalSupply } from '../../data/TotalSupply'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
-import { ExternalLink } from '../../theme'
+// import { ExternalLink } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { ButtonSecondary } from '../Button'
@@ -224,7 +224,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             </FixedHeightRow>
 
             <AutoRow justify="center" marginTop={'10px'}>
-              <ExternalLink href={`.....`}>View pool information (comming soon) ↗</ExternalLink>
+              {/* <ExternalLink href={`.....`}>View pool information (comming soon) ↗</ExternalLink> */}
             </AutoRow>
             <RowBetween marginTop="10px">
               <ButtonSecondary as={Link} to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`} width="48%">

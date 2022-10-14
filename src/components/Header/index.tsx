@@ -110,7 +110,7 @@ const TestnetWrapper = styled.div`
 const NetworkCard = styled.div`
   width: fit-content;
   margin-right: 10px;
-  padding: 10px 13px;
+  /* padding: 10px 13px; */
 `
 
 export const UniIcon = styled.div`
@@ -195,11 +195,6 @@ const Header: React.FC<PropsHeader> = props => {
         ) : (
           <HeaderControls>
             <HeaderElement>
-              <TestnetWrapper>
-                {!isMobile && chainId && NETWORK_LABELS[chainId] && (
-                  <NetworkCard>{NETWORK_LABELS[chainId]}</NetworkCard>
-                )}
-              </TestnetWrapper>
               <FaucetButton
                 active={!!account}
                 href="https://apps.moonbeam.network/moonbase-alpha/faucet/"
@@ -207,6 +202,11 @@ const Header: React.FC<PropsHeader> = props => {
               >
                 Faucet
               </FaucetButton>
+              <TestnetWrapper>
+                {!isMobile && chainId && NETWORK_LABELS[chainId] && (
+                  <NetworkCard>{NETWORK_LABELS[chainId]}</NetworkCard>
+                )}
+              </TestnetWrapper>
               <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
                 {account && userEthBalance ? (
                   <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
