@@ -79,10 +79,6 @@ export const HeadText = styled.h1`
 
 export const HeadGreen = styled.h1`
   color: #202020;
-  transition: color 0.8s ease;
-  &:hover {
-    color: #fd7687;
-  }
 `
 
 export const HeadPurple = styled.h1`

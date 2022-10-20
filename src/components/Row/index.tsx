@@ -14,7 +14,7 @@ const Row = styled(Box)<{ align?: string; padding?: string; border?: string; bor
 export const RowBetween = styled(Row)`
   justify-content: space-between;
 
-  @media screen and (max-width: 660px) {
+  @media screen and (max-width: 768px) {
     flex-direction: column;
     gap: 30px;
   }

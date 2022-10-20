@@ -57,6 +57,14 @@ const BodyWrapper = styled.div`
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
       padding: 16px;
   `};
+
+  @media screen and (max-width: 768px) {
+    padding-top: 250px;
+  }
+
+  @media screen and (max-width: 500px) {
+    padding-top: 50px;
+  }
 `
 
 // const Marginer = styled.div`

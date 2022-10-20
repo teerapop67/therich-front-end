@@ -83,7 +83,8 @@ const LastPage: React.FC<PropsOurMission> = ({ item, animateState }) => {
         </LastLeft>
         <LastRight>
           <Img
-            src="https://cdn-icons-png.flaticon.com/512/4193/4193310.png"
+            style={{ objectFit: 'cover' }}
+            src="./images/other/commu.png"
             width="400"
             height="400"
             alt="wizard"

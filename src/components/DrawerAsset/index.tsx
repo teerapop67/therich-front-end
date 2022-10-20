@@ -14,6 +14,11 @@ const DrawerContainer = styled.div<{ isOpen?: boolean }>`
   width: 350px;
   overflow: hidden;
   z-index: ${({ isOpen }) => (isOpen ? 3 : 0)};
+
+  @media screen and (max-width: 820px) {
+    width: 0;
+    z-index: 0;
+  }
 `
 
 const DrawerWrapper = styled.div<{ isOpen?: boolean }>`

@@ -64,14 +64,14 @@ export function colors(): Colors {
     // primaryText1: '#6da8ff',
 
     //primary colors
-    primary1: '#BA55D3',
-    primary2: '#9932CC',
-    primary3: '#8B008B',
-    primary4: '#800080',
-    primary5: '#4B0082',
+    primary1: '#f8c070',
+    primary2: '#f7b962',
+    primary3: '#efaf56',
+    primary4: '#eca746',
+    primary5: '#fcd229',
 
     // color text
-    primaryText1: '#DA70D6',
+    primaryText1: '#fff',
 
     // secondary colors
     secondary1: '#2172E5',

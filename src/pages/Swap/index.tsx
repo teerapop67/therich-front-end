@@ -53,6 +53,20 @@ export const SwapWrapper = styled.section`
   max-width: 1180px;
   align-items: center
   width: 100%;
+
+  @media screen and (max-width: 1028px) {
+    display: flex;
+    align-items: center
+    justify-content: center
+  }
+`
+
+const WrapperModel = styled.div`
+  display: flex;
+
+  @media screen and (max-width: 1028px) {
+    display: none;
+  }
 `
 
 export default function Swap() {
@@ -350,11 +364,11 @@ export default function Swap() {
         onConfirm={handleConfirmTokenWarning}
       />
       <SwapWrapper>
-        <div>
+        <WrapperModel>
           <canvas style={{ background: 'transparent', display: isModelLoading ? 'none' : 'block' }} id="webgl"></canvas>
 
           {isModelLoading && <h1>Loading...</h1>}
-        </div>
+        </WrapperModel>
 
         <AppBody>
           <SwapPoolTabs active={'swap'} />

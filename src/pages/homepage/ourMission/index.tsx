@@ -22,12 +22,13 @@ const OurMission: React.FC<PropsOurMission> = ({ item, animateState, allTransact
   return (
     <>
       <Content>
-        <ContentBox1>
+        <ContentBox1 style={{ background: '#eff6ff' }}>
           <Img
-            src="https://cdn-icons-png.flaticon.com/512/4193/4193266.png"
-            width="350"
-            height="350"
-            alt="wizard-g"
+            src="./images/other/moonbasediagram.png"
+            width={400}
+            height={350}
+            style={{ objectFit: 'contain' }}
+            alt="diagram"
           ></Img>
         </ContentBox1>
         <ContentBox2>

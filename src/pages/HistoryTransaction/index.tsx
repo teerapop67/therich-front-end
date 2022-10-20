@@ -212,6 +212,7 @@ const HistoryTransaction: React.FC<any> = () => {
       </WrapperHeader>
 
       <HistoryWrapper>
+        
         {tapAllTransactionActive !== 'info' && (
           <GridTransactions style={{ width: '100%', justifyItems: 'center', fontWeight: 'bold', marginBottom: '10px' }}>
             <span>Action</span>

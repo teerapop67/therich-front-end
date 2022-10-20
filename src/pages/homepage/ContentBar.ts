@@ -18,10 +18,11 @@ export const Items = styled.div`
   text-align: center;
   padding: 20px;
   width: 100%;
-  color: #202020;
-  transition: color 0.8s ease;
+  opacity: 0.7;
+  color: #fff;
+  transition: color 0.3s ease;
   &:hover {
-    color: #c70a80;
+    color: #fcd229;
   }
 `
 

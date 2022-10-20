@@ -322,7 +322,26 @@ export default function WalletModal({
             />
           )
         }
-        return null
+        return (
+          <>
+            <Option
+              id={`connect-${key}`}
+              key={key}
+              color={'#E8831D'}
+              header={'Install Metamask'}
+              subheader={null}
+              link={'https://metamask.io/'}
+              icon={MetamaskIcon}
+            />
+            <RecommendBtn
+              href="https://the-rich-documentation.gitbook.io/installation/"
+              target="_blank"
+              style={{ textDecoration: 'none' }}
+            >
+              Learn more about wallet
+            </RecommendBtn>
+          </>
+        )
       }
 
       // overwrite injected when needed

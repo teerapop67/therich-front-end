@@ -9,6 +9,10 @@ export const BodyWrapper = styled.div`
   box-shadow: ${({ theme }) => theme.shadow};
   border-radius: 30px;
   padding: 1rem;
+
+  @media screen and (max-width: 500px) {
+    max-width: 300px;
+  }
 `
 
 /**

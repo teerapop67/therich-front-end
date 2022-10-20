@@ -105,6 +105,10 @@ const TestnetWrapper = styled.div`
   width: fit-content;
   margin: 0 10px;
   pointer-events: auto;
+
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `
 
 const NetworkCard = styled.div`

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 export const Content = styled.div`
   display: flex;
   width: 100%;
+  gap: 30px;
   height: 400px;
   justify-content: center;
   align-items: center;
@@ -18,11 +19,11 @@ export const Content = styled.div`
 
 export const ContentBox1 = styled(motion.div)`
   display: flex;
-  width: 30%;
-  height: 300px;
+  width: 40%;
+  border-radius: 12px;
+  height: 280px;
   justify-content: center;
   align-items: center;
-  padding-top: 30px;
   @media screen and (max-width: 1100px) {
     height: fit-content;
     margin: 30px 0;
