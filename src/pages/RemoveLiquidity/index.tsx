@@ -341,7 +341,7 @@ export default function RemoveLiquidity({
     return (
       <AutoColumn gap={'md'} style={{ marginTop: '20px' }}>
         <RowBetween align="flex-end">
-          <Text fontSize={24} fontWeight={500}>
+          <Text fontSize={24} fontWeight={500} style={{ marginRight: '100px' }}>
             {parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}
           </Text>
           <RowFixed gap="4px">
@@ -355,7 +355,7 @@ export default function RemoveLiquidity({
           <Plus size="16" color={theme.text2} />
         </RowFixed>
         <RowBetween align="flex-end">
-          <Text fontSize={24} fontWeight={500}>
+          <Text fontSize={24} fontWeight={500} style={{ marginRight: '100px' }}>
             {parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}
           </Text>
           <RowFixed gap="4px">
@@ -536,23 +536,23 @@ export default function RemoveLiquidity({
                 </ColumnCenter>
                 <LightCard>
                   <AutoColumn gap="10px">
-                    <RowBetween>
+                    <RowBetween style={{ gap: '30px' }}>
                       <Text fontSize={24} fontWeight={500}>
                         {formattedAmounts[Field.CURRENCY_A] || '-'}
                       </Text>
                       <RowFixed>
-                        <CurrencyLogo currency={currencyA} style={{ marginRight: '12px' }} />
+                        <CurrencyLogo currency={currencyA} style={{ margin: '0 12px' }} />
                         <Text fontSize={24} fontWeight={500} id="remove-liquidity-tokena-symbol">
                           {currencyA?.symbol}
                         </Text>
                       </RowFixed>
                     </RowBetween>
-                    <RowBetween>
+                    <RowBetween style={{ gap: '30px' }}>
                       <Text fontSize={24} fontWeight={500}>
                         {formattedAmounts[Field.CURRENCY_B] || '-'}
                       </Text>
                       <RowFixed>
-                        <CurrencyLogo currency={currencyB} style={{ marginRight: '12px' }} />
+                        <CurrencyLogo currency={currencyB} style={{ margin: '0 12px' }} />
                         <Text fontSize={24} fontWeight={500} id="remove-liquidity-tokenb-symbol">
                           {currencyB?.symbol}
                         </Text>

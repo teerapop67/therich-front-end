@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { useActiveWeb3React } from '../../hooks'
 import { useAllTransactions } from '../../state/transactions/hooks'
-import { ArrowLeft } from 'react-feather'
+import { ArrowLeft, ArrowRight } from 'react-feather'
 import { MouseoverTooltip } from '../../components/Tooltip'
 import { Link } from 'react-router-dom'
 import { Search } from 'react-feather'
@@ -105,8 +105,18 @@ const SearchInput = styled.input`
 
 const GridTransactions = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   align-items: center;
+`
+
+const PaginationWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  width: 100%;
+  padding: 30px 0;
+  z-index: 999;
 `
 
 const HistoryTransaction: React.FC<any> = () => {
@@ -116,6 +126,11 @@ const HistoryTransaction: React.FC<any> = () => {
   const [tapAllTransactionActive, setTapAllTransactionActive] = useState('all')
   const [chooseTransaction, setChooseTransaction] = useState<any>({})
   const [convertTimestamp, setConvertTimestamp] = useState<any>()
+
+  const [page, setPage] = useState(1)
+  const [totalPage, setTotalPage] = useState(7)
+  const [lastIndex, setLastIndex] = useState(5)
+  const [firstIndex, setFirstIndex] = useState(0)
 
   const { account } = useActiveWeb3React()
   const allTransactions = useAllTransactions()
@@ -139,8 +154,10 @@ const HistoryTransaction: React.FC<any> = () => {
             if (users.from.toLowerCase() === account?.toLowerCase()) {
               const tx = allTransactions?.[users.hash]
               const summary = tx?.summary
-              onlyTransactionUser.push(summary)
-              onlyTransactionUser2.push(users)
+              if (summary) {
+                onlyTransactionUser.push(summary)
+                onlyTransactionUser2.push(users)
+              }
             }
             // if (account?.toLowerCase() === '0xebbe075d5089d0097d168563dc7adf015e5b2520'.toLowerCase()) {
             //   const tx = allTransactions?.[users.hash]
@@ -150,26 +167,29 @@ const HistoryTransaction: React.FC<any> = () => {
             // }
           })
           setAllShowTransaction(onlyTransactionUser.reverse())
-          setShowAllForSearch(onlyTransactionUser)
-          setAllTransactionFromApi(onlyTransactionUser2.reverse())
+          console.log('unde: ', onlyTransactionUser)
+          console.log('trans: ', onlyTransactionUser2)
+          setShowAllForSearch(onlyTransactionUser.slice(firstIndex, lastIndex))
+          setAllTransactionFromApi(onlyTransactionUser2.reverse().slice(firstIndex, lastIndex))
+          setTotalPage(Math.ceil(onlyTransactionUser2.length / 5))
         }
       })
-  }, [])
+  }, [page])
 
-  console.log('account: ', showAllForSearch)
+  // console.log('account: ', showAllForSearch)
 
   const handleTransaction = (hash: any) => {
     setChooseTransaction(allTransactions?.[hash])
     let time: any = allTransactions?.[hash]?.addedTime
     var date = new Date(time)
     setConvertTimestamp(date)
-
-    setTapAllTransactionActive('info')
   }
 
   const handleSearch = (e: any) => {
     if (e.key === 'Enter') {
       if (e.target.value) {
+        setLastIndex(-1)
+        setFirstIndex(1)
         const filterAllTransaction = allShowTransaction.filter((items: any) => {
           const objectForSearch = {
             summary: items
@@ -187,7 +207,43 @@ const HistoryTransaction: React.FC<any> = () => {
     }
   }
 
-  console.log('all: ', showAllForSearch)
+  const convertAllTimestamps = (time: number) => {
+    var date = new Date(time)
+    let alreadyConvert =
+      date.getDate() +
+      '-' +
+      (parseInt(date.getMonth().toString()) + 1) +
+      '-' +
+      date.getFullYear() +
+      ' ' +
+      date.getHours() +
+      ':' +
+      date.getMinutes() +
+      ':' +
+      date.getSeconds()
+
+    return <>{alreadyConvert}</>
+  }
+
+  const handlePagination = (direction: string) => {
+    let pageChange = page
+    console.log(pageChange)
+
+    if (direction === 'right' && pageChange < totalPage) {
+      pageChange += 1
+      setPage(pageChange)
+    } else if (direction === 'left' && pageChange > 1) {
+      pageChange -= 1
+      setPage(pageChange)
+    }
+    const indexOfLast = pageChange * 5
+    const indexOfFirst = indexOfLast - 5
+
+    setLastIndex(indexOfLast)
+    setFirstIndex(indexOfFirst)
+  }
+
+  // console.log('all: ', allTimestamps)
 
   return (
     <HistoryContainer>
@@ -212,9 +268,9 @@ const HistoryTransaction: React.FC<any> = () => {
       </WrapperHeader>
 
       <HistoryWrapper>
-        
         {tapAllTransactionActive !== 'info' && (
           <GridTransactions style={{ width: '100%', justifyItems: 'center', fontWeight: 'bold', marginBottom: '10px' }}>
+            <span>Timestamp</span>
             <span>Action</span>
             <span>Block</span>
             <span>From</span>
@@ -228,6 +284,9 @@ const HistoryTransaction: React.FC<any> = () => {
               showAllForSearch[i] && (
                 <TransactionsLink onClick={() => handleTransaction(trans.hash)} key={i}>
                   <GridTransactions>
+                    <span style={{ textAlign: 'left' }}>
+                      {convertAllTimestamps(allTransactions?.[trans.hash]?.addedTime)}
+                    </span>
                     <span style={{ textAlign: 'left' }}>{showAllForSearch[i]}</span>
                     <span style={{ textAlign: 'center' }}>{allTransactions?.[trans.hash]?.receipt?.blockNumber}</span>
                     <span style={{ textAlign: 'center' }}>
@@ -251,11 +310,11 @@ const HistoryTransaction: React.FC<any> = () => {
               <h4>Timestamp : </h4>
               <p>
                 {convertTimestamp &&
-                  convertTimestamp.getFullYear() +
-                    '-' +
-                    convertTimestamp.getDate() +
+                  convertTimestamp.getDate() +
                     '-' +
                     (parseInt(convertTimestamp.getMonth()) + 1) +
+                    '-' +
+                    convertTimestamp.getFullYear() +
                     ' ' +
                     convertTimestamp.getHours() +
                     ':' +
@@ -283,6 +342,10 @@ const HistoryTransaction: React.FC<any> = () => {
           </>
         )}
       </HistoryWrapper>
+      <PaginationWrapper>
+        <ArrowLeft cursor="pointer" onClick={() => handlePagination('left')} />
+        <ArrowRight cursor="pointer" onClick={() => handlePagination('right')} />
+      </PaginationWrapper>
     </HistoryContainer>
   )
 }

@@ -13,7 +13,6 @@ const FooterWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   text-align: center;
-
   justify-content: center;
   align-items: center;
   opacity: 0.5;

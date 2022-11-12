@@ -18,6 +18,8 @@ export const RowBetween = styled(Row)`
     flex-direction: column;
     gap: 30px;
   }
+
+ 
 `
 
 export const RowFlat = styled.div`

@@ -52,7 +52,7 @@ const LastRight = styled.div`
 `
 const LastPage: React.FC<PropsOurMission> = ({ item, animateState }) => {
   return (
-    <>
+    <>  
       <LastPageContainer>
         <LastLeft>
           <HeadGreen>This is for educational purpose</HeadGreen>
