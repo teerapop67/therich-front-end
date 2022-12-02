@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { ArrowUpCircle, ArrowDownCircle } from 'react-feather'
 import styled, { keyframes } from 'styled-components'
+import { useActiveWeb3React } from '../../hooks'
 import { useAllTokens } from '../../hooks/Tokens'
-import { useAllTokenBalances } from '../../state/wallet/hooks'
+import { useAllTokenBalances, useETHBalances } from '../../state/wallet/hooks'
 import CurrencyLogo from '../CurrencyLogo'
+import EthereumLogo from '../../assets/images/ethereum-logo.png'
+
 // import { ArrowLeft } from 'react-feather'
 
 const DrawerContainer = styled.div<{ isOpen?: boolean }>`
@@ -13,7 +16,7 @@ const DrawerContainer = styled.div<{ isOpen?: boolean }>`
   height: 100vh;
   width: 350px;
   overflow: hidden;
-  z-index: ${({ isOpen }) => (isOpen ? 3 : 0)};
+  z-index: ${({ isOpen }) => (isOpen ? 3 : -1)};
 
   @media screen and (max-width: 820px) {
     width: 0;
@@ -72,7 +75,7 @@ const ArrowWrapper = styled.span<{ isOpen: boolean }>`
   top: 50%;
   padding: 12px;
   width: fit-content;
-  left: ${({ isOpen }) => (isOpen ? 0 : '18em')};
+  right: ${({ isOpen }) => (isOpen ? '18em' : '30px')};
   background: #000;
   opacity: 0.5;
   transition: all 0.3s ease-in-out;
@@ -82,6 +85,7 @@ const ArrowWrapper = styled.span<{ isOpen: boolean }>`
   writing-mode: vertical-rl;
   text-orientation: mixed;
   height: fit-content;
+  z-index: 999;
   transform: rotateY(180deg);
 `
 
@@ -103,6 +107,13 @@ const DrawerHeader = styled.div`
   color: #fff;
 `
 
+const StyledEthereumLogo = styled.img<{ size: string }>`
+  width: ${({ size }) => size};
+  height: ${({ size }) => size};
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
+  border-radius: 24px;
+`
+
 const DrawerAsset: React.FC<any> = () => {
   const [isOpen, setIsOpen] = useState(false)
   const allTokens: any = useAllTokens()
@@ -111,10 +122,16 @@ const DrawerAsset: React.FC<any> = () => {
   const [totalTokenAddress, setTotalTokenAddress] = useState<any>([])
   const balance = useAllTokenBalances()
 
+  const { account } = useActiveWeb3React()
+
+  const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
+
   // const earth = '0x08B40414525687731C23F430CEBb424b332b3d35'
   // const rich = '0x6e3B1C44C888487Ae92cc4651858F0a838Eb69A2'
   // const jup = '0x9Aac6FB41773af877a2Be73c99897F3DdFACf576'
   // const wdevShow = '0xD909178CC99d318e4D46e7E66a972955859670E1'
+
+  console.log(totalTokenAddress)
 
   useEffect(() => {
     if (totalTokenAddress.length === 0) {
@@ -170,7 +187,10 @@ const DrawerAsset: React.FC<any> = () => {
             ) : (
               <ArrowUpCircle cursor="pointer" onClick={handleSort} strokeWidth={0.5} size={30} />
             )}
-
+            <div className="box-token">
+              <StyledEthereumLogo src={EthereumLogo} size="24px" />
+              {userEthBalance?.toSignificant(4)} <p className="name-coin">DEV</p>{' '}
+            </div>
             {totalTokenAddress.map((token: any) => (
               <div className="box-token" key={token.name}>
                 <CurrencyLogo currency={token.logo} size={'24px'} />
@@ -180,11 +200,11 @@ const DrawerAsset: React.FC<any> = () => {
             ))}
           </CoinWrapper>
         </DrawerWrapper>
-        <ArrowWrapper isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
-          {/* <ArrowDrawer  /> */}
-          BALANCE
-        </ArrowWrapper>
       </DrawerContainer>
+      <ArrowWrapper isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+        {/* <ArrowDrawer  /> */}
+        BALANCE
+      </ArrowWrapper>
     </>
   )
 }

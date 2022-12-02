@@ -73,19 +73,18 @@ export default function SwapModalFooter({
             </TYPE.black>
             <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
           </RowFixed>
-          <RowFixed>
-            <TYPE.black fontSize={14}>
-              {trade.tradeType === TradeType.EXACT_INPUT
-                ? slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4) ?? '-'
-                : slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4) ?? '-'}
-            </TYPE.black>
-            <TYPE.black fontSize={14} marginLeft={'4px'}>
-              {trade.tradeType === TradeType.EXACT_INPUT
-                ? trade.outputAmount.currency.symbol
-                : trade.inputAmount.currency.symbol}
-            </TYPE.black>
-          </RowFixed>
+          <TYPE.black fontSize={14} style={{ whiteSpace: 'nowrap' }}>
+            {trade.tradeType === TradeType.EXACT_INPUT
+              ? slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4) ?? '-'
+              : slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4) ?? '-'}
+          </TYPE.black>
+          <TYPE.black fontSize={14} marginLeft={'15px'}>
+            {trade.tradeType === TradeType.EXACT_INPUT
+              ? trade.outputAmount.currency.symbol
+              : trade.inputAmount.currency.symbol}
+          </TYPE.black>
         </RowBetween>
+
         <RowBetween>
           <RowFixed>
             <TYPE.black color={theme.text2} fontSize={14} fontWeight={400}>
@@ -95,6 +94,7 @@ export default function SwapModalFooter({
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
+
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
@@ -102,10 +102,13 @@ export default function SwapModalFooter({
             </TYPE.black>
             <QuestionHelper text="A portion of each trade (0.30%) goes to liquidity providers as a protocol incentive." />
           </RowFixed>
-          <TYPE.black fontSize={14}>
-            {realizedLPFee ? realizedLPFee?.toSignificant(6) + ' ' + trade.inputAmount.currency.symbol : '-'}
+          <TYPE.black fontSize={14} style={{ whiteSpace: 'nowrap' }}>
+            {realizedLPFee ? realizedLPFee?.toSignificant(4) + ' ' + trade.inputAmount.currency.symbol : '-'}
           </TYPE.black>
         </RowBetween>
+        <TYPE.black fontWeight={400} color={theme.red1} style={{ marginTop: '10px', fontSize: '12px' }}>
+          **Must pay gas on MetaMask when it's popup.
+        </TYPE.black>
       </AutoColumn>
 
       <AutoRow>

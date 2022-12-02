@@ -80,7 +80,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                   {currency0.symbol}/{currency1.symbol}
                 </Text>
               </RowFixed>
-              <RowFixed>
+              <RowFixed style={{ marginLeft: '2.5rem' }}>
                 <Text fontWeight={500} fontSize={20}>
                   {userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}
                 </Text>
@@ -94,7 +94,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                 {token0Deposited ? (
                   <RowFixed>
                     <Text color="#888D9B" fontSize={16} fontWeight={500} marginLeft={'6px'}>
-                      {token0Deposited?.toSignificant(6)}
+                      {token0Deposited?.toSignificant(4)}
                     </Text>
                   </RowFixed>
                 ) : (
@@ -108,7 +108,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
                 {token1Deposited ? (
                   <RowFixed>
                     <Text color="#888D9B" fontSize={16} fontWeight={500} marginLeft={'6px'}>
-                      {token1Deposited?.toSignificant(6)}
+                      {token1Deposited?.toSignificant(4)}
                     </Text>
                   </RowFixed>
                 ) : (
@@ -178,11 +178,11 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                 </Text>
               </RowFixed>
               {token0Deposited ? (
-                <RowFixed>
+                <RowFixed style={{ justifyContent: 'right' }}>
                   <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
-                    {token0Deposited?.toSignificant(6)}
+                    {token0Deposited?.toSignificant(4)}
                   </Text>
-                  <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency0} />
+                  <CurrencyLogo size="20px" style={{ marginLeft: '5px' }} currency={currency0} />
                 </RowFixed>
               ) : (
                 '-'
@@ -195,12 +195,13 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                   Pooled {currency1.symbol}:
                 </Text>
               </RowFixed>
+
               {token1Deposited ? (
-                <RowFixed>
+                <RowFixed style={{ justifyContent: 'right' }}>
                   <Text fontSize={16} fontWeight={500} marginLeft={'6px'}>
-                    {token1Deposited?.toSignificant(6)}
+                    {token1Deposited?.toSignificant(4)}
                   </Text>
-                  <CurrencyLogo size="20px" style={{ marginLeft: '8px' }} currency={currency1} />
+                  <CurrencyLogo size="20px" style={{ marginLeft: '5px' }} currency={currency1} />
                 </RowFixed>
               ) : (
                 '-'

@@ -91,7 +91,7 @@ export default function AddLiquidity({
   // get formatted amounts
   const formattedAmounts = {
     [independentField]: typedValue,
-    [dependentField]: noLiquidity ? otherTypedValue : parsedAmounts[dependentField]?.toSignificant(6) ?? ''
+    [dependentField]: noLiquidity ? otherTypedValue : parsedAmounts[dependentField]?.toSignificant(4) ?? ''
   }
 
   // get the max amounts user can add
@@ -188,11 +188,11 @@ export default function AddLiquidity({
           addTransaction(response, {
             summary:
               'Add ' +
-              parsedAmounts[Field.CURRENCY_A]?.toSignificant(3) +
+              parsedAmounts[Field.CURRENCY_A]?.toSignificant(4) +
               ' ' +
               currencies[Field.CURRENCY_A]?.symbol +
               ' and ' +
-              parsedAmounts[Field.CURRENCY_B]?.toSignificant(3) +
+              parsedAmounts[Field.CURRENCY_B]?.toSignificant(4) +
               ' ' +
               currencies[Field.CURRENCY_B]?.symbol
           })
@@ -235,7 +235,7 @@ export default function AddLiquidity({
       <AutoColumn gap="20px">
         <RowFlat style={{ marginTop: '20px' }}>
           <Text fontSize="48px" fontWeight={500} lineHeight="42px" marginRight={10}>
-            {liquidityMinted?.toSignificant(6)}
+            {liquidityMinted?.toSignificant(4)}
           </Text>
           <DoubleCurrencyLogo
             currency0={currencies[Field.CURRENCY_A]}
@@ -269,9 +269,9 @@ export default function AddLiquidity({
     )
   }
 
-  const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)} ${
+  const pendingText = `Supplying ${parsedAmounts[Field.CURRENCY_A]?.toSignificant(4)} ${
     currencies[Field.CURRENCY_A]?.symbol
-  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)} ${currencies[Field.CURRENCY_B]?.symbol}`
+  } and ${parsedAmounts[Field.CURRENCY_B]?.toSignificant(4)} ${currencies[Field.CURRENCY_B]?.symbol}`
 
   const handleCurrencyASelect = useCallback(
     (currencyA: Currency) => {

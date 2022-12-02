@@ -1,11 +1,12 @@
 import { Currency, CurrencyAmount, Fraction, Percent } from 'richsdk'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Text } from 'rebass'
 import { ButtonPrimary } from '../../components/Button'
 import { RowBetween, RowFixed } from '../../components/Row'
 import CurrencyLogo from '../../components/CurrencyLogo'
 import { Field } from '../../state/mint/actions'
 import { TYPE } from '../../theme'
+import { ThemeContext } from 'styled-components'
 
 export function ConfirmAddModalBottom({
   noLiquidity,
@@ -22,20 +23,22 @@ export function ConfirmAddModalBottom({
   poolTokenPercentage?: Percent
   onAdd: () => void
 }) {
+  const theme = useContext(ThemeContext)
+
   return (
     <>
       <RowBetween>
         <TYPE.body>{currencies[Field.CURRENCY_A]?.symbol} Deposited</TYPE.body>
         <RowFixed>
           <CurrencyLogo currency={currencies[Field.CURRENCY_A]} style={{ marginRight: '8px' }} />
-          <TYPE.body>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(6)}</TYPE.body>
+          <TYPE.body>{parsedAmounts[Field.CURRENCY_A]?.toSignificant(4)}</TYPE.body>
         </RowFixed>
       </RowBetween>
       <RowBetween>
         <TYPE.body>{currencies[Field.CURRENCY_B]?.symbol} Deposited</TYPE.body>
         <RowFixed>
           <CurrencyLogo currency={currencies[Field.CURRENCY_B]} style={{ marginRight: '8px' }} />
-          <TYPE.body>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(6)}</TYPE.body>
+          <TYPE.body>{parsedAmounts[Field.CURRENCY_B]?.toSignificant(4)}</TYPE.body>
         </RowFixed>
       </RowBetween>
       <RowBetween>
@@ -57,6 +60,9 @@ export function ConfirmAddModalBottom({
         <TYPE.body>Share of Pool:</TYPE.body>
         <TYPE.body>{noLiquidity ? '100' : poolTokenPercentage?.toSignificant(4)}%</TYPE.body>
       </RowBetween>
+      <TYPE.black fontWeight={400} color={theme.red1} style={{ marginTop: '10px', fontSize: '12px' }}>
+        **Must pay gas on MetaMask when it's popup.
+      </TYPE.black>
       <ButtonPrimary style={{ margin: '20px 0 0 0' }} onClick={onAdd}>
         <Text fontWeight={500} fontSize={20}>
           {noLiquidity ? 'Create Pool & Supply' : 'Confirm Supply'}

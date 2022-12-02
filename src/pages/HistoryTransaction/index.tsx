@@ -117,6 +117,17 @@ const PaginationWrapper = styled.div`
   width: 100%;
   padding: 30px 0;
   z-index: 999;
+
+  .page {
+    display: flex;
+    padding: 5px 10px;
+    box-shadow: ${({ theme }) => theme.shadow2};
+    align-items: center;
+    border-radius: 12px;
+    justify-content: center;
+    background: gray;
+    color: ${({ theme }) => theme.text1};
+  }
 `
 
 const HistoryTransaction: React.FC<any> = () => {
@@ -183,6 +194,8 @@ const HistoryTransaction: React.FC<any> = () => {
     let time: any = allTransactions?.[hash]?.addedTime
     var date = new Date(time)
     setConvertTimestamp(date)
+
+    setTapAllTransactionActive('info')
   }
 
   const handleSearch = (e: any) => {
@@ -344,6 +357,7 @@ const HistoryTransaction: React.FC<any> = () => {
       </HistoryWrapper>
       <PaginationWrapper>
         <ArrowLeft cursor="pointer" onClick={() => handlePagination('left')} />
+        <div className="page">{page}</div>
         <ArrowRight cursor="pointer" onClick={() => handlePagination('right')} />
       </PaginationWrapper>
     </HistoryContainer>

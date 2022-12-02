@@ -45,7 +45,7 @@ export default function SwapModalHeader({
             fontWeight={500}
             color={showAcceptChanges && trade.tradeType === TradeType.EXACT_OUTPUT ? theme.primary1 : ''}
           >
-            {trade.inputAmount.toSignificant(6)}
+            {trade.inputAmount.toSignificant(4)}
           </TruncatedText>
         </RowFixed>
         <RowFixed gap={'0px'}>
@@ -71,7 +71,7 @@ export default function SwapModalHeader({
                 : ''
             }
           >
-            {trade.outputAmount.toSignificant(6)}
+            {trade.outputAmount.toSignificant(4)}
           </TruncatedText>
         </RowFixed>
         <RowFixed gap={'0px'}>
@@ -101,7 +101,7 @@ export default function SwapModalHeader({
           <TYPE.italic textAlign="left" style={{ width: '100%' }}>
             {`Output is estimated. You will receive at least `}
             <b>
-              {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(6)} {trade.outputAmount.currency.symbol}
+              {slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} {trade.outputAmount.currency.symbol}
             </b>
             {' or the transaction will revert.'}
           </TYPE.italic>
@@ -109,7 +109,7 @@ export default function SwapModalHeader({
           <TYPE.italic textAlign="left" style={{ width: '100%' }}>
             {`Input is estimated. You will sell at most `}
             <b>
-              {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(6)} {trade.inputAmount.currency.symbol}
+              {slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} {trade.inputAmount.currency.symbol}
             </b>
             {' or the transaction will revert.'}
           </TYPE.italic>
